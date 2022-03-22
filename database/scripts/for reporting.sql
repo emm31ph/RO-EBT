@@ -1,0 +1,53 @@
+select rt.Customer, rt.docno,rt.PO_no,
+  rp.deliver_date as 'deliverydate',
+  rp.created_at as 'processdate',
+  rp.area as 'area',
+  rp.plate as 'plate',
+  rp.truckno as 'truckno',
+  rp.driver as 'driver',
+  max(case  when rt.U_STOCKCODE in ('SWSG100155') then rt.qty else 0 end) as 'SWSG100155',
+  max(case  when rt.U_STOCKCODE in ('SWSC100155') then rt.qty else 0 end) as 'SWSC100155',
+  max(case  when rt.U_STOCKCODE in ('SWSG100130') then rt.qty else 0 end) as 'SWSG100130',
+  max(case  when rt.U_STOCKCODE in ('SWSC100130') then rt.qty else 0 end) as 'SWSC100130',
+  max(case  when rt.U_STOCKCODE in ('SWSGE100155') then rt.qty else 0 end) as 'SWSGE100155',
+
+  max(case  when rt.U_STOCKCODE in ('TSC100155') then rt.qty else 0 end) as 'TSC100155',
+  max(case  when rt.U_STOCKCODE in ('TSR100155') then rt.qty else 0 end) as 'TSR100155',
+  max(case  when rt.U_STOCKCODE in ('TSG100130') then rt.qty else 0 end) as 'TSG100130',
+  max(case  when rt.U_STOCKCODE in ('TSC100130') then rt.qty else 0 end) as 'TSC100130',
+  max(case  when rt.U_STOCKCODE in ('TSR100130') then rt.qty else 0 end) as 'TSR100130',
+  max(case  when rt.U_STOCKCODE in ('tsge100155') then rt.qty else 0 end) as 'tsge100155',
+  max(case  when rt.U_STOCKCODE in ('TSR100155') then rt.qty else 0 end) as 'TSR100155',
+  max(case  when rt.U_STOCKCODE in ('SSR100155') then rt.qty else 0 end) as 'SSR100155',
+  max(case  when rt.U_STOCKCODE in ('SSG100155') then rt.qty else 0 end) as 'SSG100155',
+  max(case  when rt.U_STOCKCODE in ('SSR100130') then rt.qty else 0 end) as 'SSR100130',
+  max(case  when rt.U_STOCKCODE in ('SSG100130') then rt.qty else 0 end) as 'SSG100130',
+  max(case  when rt.U_STOCKCODE in ('SSRE100155') then rt.qty else 0 end) as 'SSRE100155',
+  max(case  when rt.U_STOCKCODE in ('SSGE100155') then rt.qty else 0 end) as 'SSGE100155',
+  max(case  when rt.U_STOCKCODE in ('OBTCO48185') then rt.qty else 0 end) as 'OBTCO48185',
+  max(case  when rt.U_STOCKCODE in ('OBTCB48185') then rt.qty else 0 end) as 'OBTCB48185',
+  max(case  when rt.U_STOCKCODE in ('OBTFO48185') then rt.qty else 0 end) as 'OBTFO48185',
+  max(case  when rt.U_STOCKCODE in ('OBTHS48185') then rt.qty else 0 end) as 'OBTHS48185',
+  max(case  when rt.U_STOCKCODE in ('OBTFO48155') then rt.qty else 0 end) as 'OBTFO48155',
+  max(case  when rt.U_STOCKCODE in ('OBTHS48155') then rt.qty else 0 end) as 'OBTHS48155',
+  max(case  when rt.U_STOCKCODE in ('DCC48390') then rt.qty else 0 end) as 'RES1',
+  max(case  when rt.U_STOCKCODE in ('') then rt.qty else 0 end) as 'RES2',
+  max(case  when rt.U_STOCKCODE in ('') then rt.qty else 0 end) as 'RES3',
+  max(case  when rt.U_STOCKCODE in ('') then rt.qty else 0 end) as 'RES4',
+  max(case  when rt.U_STOCKCODE in ('') then rt.qty else 0 end) as 'RES5',
+  max(case  when rt.U_STOCKCODE in ('') then rt.qty else 0 end) as 'RES6',
+  max(case  when rt.U_STOCKCODE in ('') then rt.qty else 0 end) as 'RES7',
+  max(case  when rt.U_STOCKCODE in ('') then rt.qty else 0 end) as 'RES8',
+  max(case  when rt.U_STOCKCODE in ('') then rt.qty else 0 end) as 'RES9'
+
+  #max(case  when rt.U_STOCKCODE in ('OBTHS48185111') then rt.qty else 0 end) as 'OBTHS4818511',
+  #max(case  when rt.U_STOCKCODE in ('OBTHS48185111') then rt.qty else 0 end) as 'OBTHS4818511',
+  #max(case  when rt.U_STOCKCODE in ('OBTHS48185111') then rt.qty else 0 end) as 'OBTHS4818511',
+  #max(case  when rt.U_STOCKCODE in ('OBTHS48185111') then rt.qty else 0 end) as 'OBTHS4818511',
+  #max(case  when rt.U_STOCKCODE in ('OBTHS48185111') then rt.qty else 0 end) as 'OBTHS4818511',
+  #max(case  when rt.U_STOCKCODE in ('OBTHS48185111') then rt.qty else 0 end) as 'OBTHS4818511'
+  from releasetfi rt
+  inner join release_items ri on ri.releasetfi_id=rt.id
+  inner join releaseprocess rp on rp.id=ri.releaseprocess_id
+  where rt.PO_no='82588' 
+  #group by rt.Customer, rt.docno,rt.PO_no
